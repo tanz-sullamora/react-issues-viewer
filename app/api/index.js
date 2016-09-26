@@ -31,6 +31,10 @@ class API {
     return axios.get(`${this.endpointUrl}/repos/${username}/${repo}/issues?page=${page}&per_page=${this.perPage}`);
   }
 
+  findIssue(username, repo, issue) {
+    return axios.get(`${this.endpointUrl}/repos/${username}/${repo}/issues/${issue}`);
+  }
+
 }
 
 export default API;

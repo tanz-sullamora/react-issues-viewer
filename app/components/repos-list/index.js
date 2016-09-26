@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-export const ReposList = ({ setRepo, repos }) => (
+const ReposList = ({ setRepo, repos }) => (
   <ul>
     {repos.map((repo) =>
       <li key={repo.id}>

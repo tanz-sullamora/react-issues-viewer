@@ -2,7 +2,6 @@ export const LOADING_START = 'LOADING_START';
 export const LOADING_ERROR = 'LOADING_ERROR';
 export const LOADING_SUCCESS = 'LOADING_SUCCESS';
 
-
 export const actions = {
   start: () => (dispatch) => {
     dispatch({
@@ -15,18 +14,18 @@ export const actions = {
       response,
     });
   },
-  success: (listType, response) => (dispatch) => {
+  success: (response) => (dispatch) => {
     dispatch({
       type: LOADING_SUCCESS,
-      listType,
       response,
     });
   },
 };
 
 const INITIAL_STATE = {
-  issues: [],
-  partialSuccess: false,
+  issue: {
+    user: {}
+  },
   isLoading: false,
   error: false,
 };
@@ -52,14 +51,12 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
     case LOADING_SUCCESS: {
       const {
-        response=[],
-        listType,
+        response={}
       } = action;
 
       return {
         ...state,
-        issues: response,
-        partialSuccess: listType !== 'issues',
+        issue: response,
         isLoading: false,
         error: false,
       }

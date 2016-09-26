@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 
 import Layout from './components/layout';
+import IssuePage from './components/issue-page';
 import MainPage from './components/main-page';
 
 render(
@@ -13,6 +14,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={Layout}>
         <IndexRoute name="main" component={MainPage} />
+        <Route path="/issues/:owner/:repo/issues/:id" component={IssuePage} />
       </Route>
     </Router>
   </Provider>,
