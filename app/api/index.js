@@ -4,7 +4,7 @@ class API {
 
   constructor() {
     this.endpointUrl = 'https://api.github.com';
-    this.perPage = 20;
+    this.perPage = 5;
   }
 
   getEndpointUrl() {
@@ -22,13 +22,17 @@ class API {
   setPerPage(limit) {
     this.perPage = limit;
   }
+
+  setPage(page) {
+    this.page = page;
+  }
   
   findUserRepos(username, page=1) {
-    return axios.get(`${this.endpointUrl}/users/${username}/repos?page=${page}&per_page=${this.perPage}`);
+    return axios.get(`${this.endpointUrl}/users/${username}/repos?page=${this.page}&per_page=${this.perPage}`);
   }
 
   listIssuesByUserAndRepo(username, repo, page=1) {
-    return axios.get(`${this.endpointUrl}/repos/${username}/${repo}/issues?page=${page}&per_page=${this.perPage}`);
+    return axios.get(`${this.endpointUrl}/repos/${username}/${repo}/issues?page=${this.page}&per_page=${this.perPage}`);
   }
 
   findIssue(username, repo, issue) {

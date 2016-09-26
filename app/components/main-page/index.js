@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import IssuesList from './../issues-list';
 import ReposList from './../repos-list';
 import SearchForm from './../search-form';
+import Paging from './../paging';
 
 import IssueDAO from './../../dao/issue';
 
@@ -16,18 +17,26 @@ class MainPage extends React.Component {
     this.issues = new IssueDAO(this.props.dispatch);
 
     this.onSearch = this.onSearch.bind(this);
+    this.onChangePage = this.onChangePage.bind(this);
     this.setRepo = this.setRepo.bind(this);
 
     this.state = {
-      username: '',
-      repository: '',
-      isLoading: false,
-      error: false,
+      selectedPage: 1,
     };
   }
 
   onSearch(username, repository) {
-    this.issues.find(username, repository);
+    this.setState({
+        selectedPage: 1,
+    });
+    this.issues.reset().find(username, repository);
+  }
+
+  onChangePage(selectedPage) {
+    this.setState({
+        selectedPage,
+    });
+    this.issues.setPage(selectedPage);
   }
 
   setRepo(repoFullName) {
@@ -38,10 +47,15 @@ class MainPage extends React.Component {
   render() {
     const {
       issues,
+      pageCount,
       partialSuccess,
       isLoading,
       error,
     } = this.props.issues;
+
+    const {
+        selectedPage
+    } = this.state;
 
     return (
       <div>
@@ -50,17 +64,25 @@ class MainPage extends React.Component {
           isLoading={isLoading}
           error={error}
         />
-        {issues.length > 0 && partialSuccess && (
+        {!error && issues.length > 0 && partialSuccess && (
           <ReposList
             repos={issues}
             setRepo={this.setRepo}
           />
         )}
-        {issues.length > 0 && !partialSuccess && (
+        {!error && issues.length > 0 && !partialSuccess && (
           <IssuesList
             issues={issues}
           />
         )}
+        {!error && issues.length > 0 && (
+          <Paging
+            pageCount={pageCount}
+            selectedPage={selectedPage}
+            onChangePage={this.onChangePage}
+          />
+        )}
+
       </div>
     );
   }

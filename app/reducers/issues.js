@@ -1,6 +1,7 @@
 export const LOADING_START = 'LOADING_START';
 export const LOADING_ERROR = 'LOADING_ERROR';
 export const LOADING_SUCCESS = 'LOADING_SUCCESS';
+export const PAGE_COUNT = 'PAGE_COUNT';
 
 
 export const actions = {
@@ -22,10 +23,17 @@ export const actions = {
       response,
     });
   },
+  pageCount: (pageCount) => (dispatch) => {
+    dispatch({
+      type: PAGE_COUNT,
+      pageCount,
+    });
+  },
 };
 
 const INITIAL_STATE = {
   issues: [],
+  pageCount: 0,
   partialSuccess: false,
   isLoading: false,
   error: false,
@@ -63,6 +71,17 @@ export const reducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         error: false,
       }
+    }
+
+    case PAGE_COUNT: {
+      const {
+        pageCount,
+      } = action;
+
+      return {
+        ...state,
+        pageCount,
+      };
     }
 
     default:
