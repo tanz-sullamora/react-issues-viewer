@@ -234,6 +234,26 @@ a {
 			text-decoration: underline;
 		}
 	}
+
+	&__error {
+		color: #f28;
+		display: block;
+		font-size: 0.9em;
+
+		&:before {
+			background-color: #f28;
+			border-radius: 100%;
+			color: #fff;
+			content: "!";
+			display: inline-block;
+			font-weight: bold;
+			height: 1.2em;
+			margin-right: 0.5em;
+			text-align: center;
+			vertical-align: bottom;
+			width: 1.2em;
+		}
+	}
 }
 
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import IssuesList from './../issues-list';
 import ReposList from './../repos-list';
@@ -22,14 +23,28 @@ class MainPage extends React.Component {
 
     this.state = {
       selectedPage: 1,
+      wasSearched: false,
     };
   }
 
-  onSearch(username, repository) {
+  componentDidMount() {
+    const {
+      owner='',
+      repo='',
+    } = this.props.params;
+
+    if (owner) {
+      this.onSearch(owner, repo);
+    }
+  }
+
+  onSearch(username='', repository='') {
     this.setState({
         selectedPage: 1,
+        wasSearched: true,
     });
     this.issues.reset().find(username, repository);
+    this.props.router.push(`search/${username}/${repository}`);
   }
 
   onChangePage(selectedPage) {
@@ -40,8 +55,9 @@ class MainPage extends React.Component {
   }
 
   setRepo(repoFullName) {
-    const [ username, repository ] = repoFullName.split('/');
+    const [ username='', repository='' ] = repoFullName.split('/');
     this.issues.reset().find(username, repository);
+    this.props.router.push(`search/${username}/${repository}`);
   }
 
   render() {
@@ -51,10 +67,12 @@ class MainPage extends React.Component {
       partialSuccess,
       isLoading,
       error,
+      errorMessage,
     } = this.props.issues;
 
     const {
-        selectedPage
+        selectedPage,
+        wasSearched,
     } = this.state;
 
     return (
@@ -63,8 +81,12 @@ class MainPage extends React.Component {
           onSearch={this.onSearch}
           isLoading={isLoading}
           error={error}
+          errorMessage={errorMessage}
         />
-        {!error && issues.length > 0 && partialSuccess && (
+        {isLoading && (
+          <p className="main-page__text">Loading…</p>
+        )}
+        {!isLoading && !error && issues.length > 0 && partialSuccess && (
           <div>
             <p className="main-page__text">Please, pick a repository to view issues</p>
             <ReposList
@@ -73,19 +95,24 @@ class MainPage extends React.Component {
             />
           </div>
         )}
-        {!error && issues.length > 0 && !partialSuccess && (
+        {!isLoading && !error && issues.length === 0 && partialSuccess && wasSearched && (
+          <p className="main-page__text">This user has no repositories</p>
+        )}
+        {!isLoading && !error && issues.length > 0 && !partialSuccess && (
           <IssuesList
             issues={issues}
           />
         )}
-        {!error && issues.length > 0 && (
+        {!isLoading && !error && issues.length === 0 && !partialSuccess && wasSearched && (
+          <p className="main-page__text">There are no open issues in this repository</p>
+        )}
+        {!isLoading && !error && issues.length > 0 && (
           <Paging
             pageCount={pageCount}
             selectedPage={selectedPage}
             onChangePage={this.onChangePage}
           />
         )}
-
       </div>
     );
   }
@@ -95,4 +122,4 @@ const mapStateToProps = (state) => ({
   issues: state.issues,
 });
 
-export default connect(mapStateToProps)(MainPage);
+export default connect(mapStateToProps)(withRouter(MainPage));

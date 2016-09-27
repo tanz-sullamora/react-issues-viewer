@@ -1,5 +1,5 @@
 var isDevMode = process.env.NODE_ENV != 'production';
-console.log(process.env.NODE_ENV)
+
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');

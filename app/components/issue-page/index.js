@@ -20,7 +20,7 @@ class IssuePage extends React.Component {
       repo,
       id,
     } = this.props.params;
-    console.log(owner, repo, id);
+
     this.issues.reset().find(owner, repo, id);
   }
 
@@ -30,19 +30,14 @@ class IssuePage extends React.Component {
       partialSuccess,
       isLoading,
       error,
+      errorMessage,
     } = this.props.issue;
-
-    if (isLoading) {
-      return <span>Wait a minute…</span>;
-    }
-
-    if (error) {
-      return <span>Some error</span>;
-    }
 
     return (
       <div className="issue-page">
-        <IssueView issue={issue} />
+        {isLoading && <span>Wait a minute…</span>}
+        {!isLoading && !error && <IssueView issue={issue} />}
+        {!isLoading && error && (<p className="issue-page__error">An error has occurred{errorMessage ? ` — ${errorMessage}` : ''}. Please, try again…</p>)}
         <p>
           <a href="/#" className="issue-page__backlink">&larr; Back to search</a>
         </p>

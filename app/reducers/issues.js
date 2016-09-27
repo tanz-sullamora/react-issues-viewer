@@ -10,9 +10,16 @@ export const actions = {
       type: LOADING_START,
     });
   },
-  error: () => (dispatch) => {
+  error: (response) => (dispatch) => {
+    const {
+      data: {
+        message='',
+      }={},
+    } = response;
+
     dispatch({
       type: LOADING_ERROR,
+      errorMessage: message,
     });
   },
   success: (listType, response) => (dispatch) => {
@@ -36,6 +43,7 @@ const INITIAL_STATE = {
   partialSuccess: false,
   isLoading: false,
   error: false,
+  errorMessage: '',
 };
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -45,16 +53,22 @@ export const reducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         error: false,
+        errorMessage: '',
         isLoading: true,
-      }
+      };
     }
 
     case LOADING_ERROR: {
+      const {
+        errorMessage='',
+      } = action;
+
       return {
         ...state,
         isLoading: false,
         error: true,
-      }
+        errorMessage,
+      };
     }
 
     case LOADING_SUCCESS: {
@@ -69,7 +83,7 @@ export const reducer = (state = INITIAL_STATE, action) => {
         partialSuccess: listType !== 'issues',
         isLoading: false,
         error: false,
-      }
+      };
     }
 
     case PAGE_COUNT: {
