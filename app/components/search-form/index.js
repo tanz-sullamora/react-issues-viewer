@@ -47,7 +47,8 @@ class SearchForm extends React.Component {
     const {
       isLoading,
       error,
-    } = this.props
+      errorMessage,
+    } = this.props;
 
     return (
       <form onSubmit={this.trySearch} className="search-form">
@@ -56,7 +57,7 @@ class SearchForm extends React.Component {
         <label className="search-form__label">repository</label>
         <input type="text" value={repository} disabled={!username} onChange={this.onChangeRepository} className="search-form__input" />
         <button type="submit" disabled={isLoading} className="search-form__button">{isLoading ? 'Loading' : 'Search'}</button>
-        {error && (<p className="search-form__error">An error has occurred. Please, try again…</p>)}
+        {error && (<p className="search-form__error">An error has occurred{errorMessage ? ` — ${errorMessage}` : ''}. Please, try again…</p>)}
       </form>
     );
   }
@@ -67,6 +68,7 @@ SearchForm.propTypes = {
   onSearch: React.PropTypes.func.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
   error: React.PropTypes.bool.isRequired,
+  errorMessage: React.PropTypes.string.isRequired,
 };
 
 export default SearchForm;

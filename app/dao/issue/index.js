@@ -64,10 +64,10 @@ class Issue {
     this.api.findUserRepos(username)
       .then(this.processPageCount.bind(this))
       .then(
-        (response) => IssuesActions.success('repos', response.data)(this.dispatch)
+        ({ data }) => IssuesActions.success('repos', data)(this.dispatch)
       )
       .catch(
-        (response) => IssuesActions.error(response)(this.dispatch)
+        ({ response }) => IssuesActions.error(response)(this.dispatch)
       );
   }
 
@@ -77,10 +77,10 @@ class Issue {
     this.api.listIssuesByUserAndRepo(username, repo)
       .then(this.processPageCount.bind(this))
       .then(
-        (response) => IssuesActions.success('issues', response.data)(this.dispatch)
+        ({ data }) => IssuesActions.success('issues', data)(this.dispatch)
       )
       .catch(
-        (response) => IssuesActions.error(response)(this.dispatch)
+        ({ response }) => IssuesActions.error(response)(this.dispatch)
       );
   }
 
@@ -89,10 +89,10 @@ class Issue {
     
     this.api.findIssue(username, repo, issue)
       .then(
-        (response) => SingleIssueActions.success(response.data)(this.dispatch)
+        ({ data }) => SingleIssueActions.success(data)(this.dispatch)
       )
       .catch(
-        (response) => SingleIssueActions.error(response)(this.dispatch)
+        ({ response }) => SingleIssueActions.error(response)(this.dispatch)
       );
   }
 

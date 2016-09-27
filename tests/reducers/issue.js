@@ -22,6 +22,7 @@ describe('Reducer Issue', function() {
       },
       isLoading: false,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {});
@@ -37,6 +38,7 @@ describe('Reducer Issue', function() {
       },
       isLoading: true,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -54,10 +56,11 @@ describe('Reducer Issue', function() {
       },
       isLoading: false,
       error: true,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
-      type: LOADING_ERROR
+      type: LOADING_ERROR,
     });
 
     expect(actual).toEqual(expected);
@@ -73,6 +76,7 @@ describe('Reducer Issue', function() {
       },
       isLoading: false,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -109,9 +113,10 @@ describe('Reducer Issue', function() {
   it('must dispatch LOADING_ERROR on calling actions.error', function() {
     const expected = {
       type: LOADING_ERROR,
+      errorMessage: '',
     };
 
-    IssueActions.error()(dispatch.anAction);
+    IssueActions.error({})(dispatch.anAction);
 
     expect(dispatch.anAction).toHaveBeenCalledWith(expected);
   });

@@ -21,7 +21,8 @@ describe('Reducer Issues', function() {
       pageCount: 0,
       partialSuccess: false,
       isLoading: false,
-      error: false,
+      error: false,      
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {});
@@ -37,6 +38,7 @@ describe('Reducer Issues', function() {
       partialSuccess: false,
       isLoading: true,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -54,6 +56,7 @@ describe('Reducer Issues', function() {
       partialSuccess: false,
       isLoading: false,
       error: true,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -73,6 +76,7 @@ describe('Reducer Issues', function() {
       partialSuccess: true,
       isLoading: false,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -94,6 +98,7 @@ describe('Reducer Issues', function() {
       partialSuccess: false,
       isLoading: false,
       error: false,
+      errorMessage: '',
     };
 
     const actual = IssueReducer(undefined, {
@@ -127,9 +132,10 @@ describe('Reducer Issues', function() {
   it('must dispatch LOADING_ERROR on calling actions.error', function() {
     const expected = {
       type: LOADING_ERROR,
+      errorMessage: '',
     };
 
-    IssueActions.error()(dispatch.anAction);
+    IssueActions.error({})(dispatch.anAction);
 
     expect(dispatch.anAction).toHaveBeenCalledWith(expected);
   });
