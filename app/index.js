@@ -9,6 +9,9 @@ import Layout from './components/layout';
 import IssuePage from './components/issue-page';
 import MainPage from './components/main-page';
 
+import './theme/theme.css';
+
+
 render(
   <Provider store={store}>
     <Router history={hashHistory}>

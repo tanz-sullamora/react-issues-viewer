@@ -2,10 +2,10 @@ import React from 'react';
 
 
 const ReposList = ({ setRepo, repos }) => (
-  <ul>
+  <ul className="repos-list">
     {repos.map((repo) =>
-      <li key={repo.id}>
-        <span onClick={setRepo.bind(this, repo.full_name)}>{repo.name}</span>
+      <li key={repo.id} className="repos-list__item">
+        <span onClick={setRepo.bind(this, repo.full_name)} className="repos-list__link">{repo.name}</span>
       </li>
     )}
   </ul>

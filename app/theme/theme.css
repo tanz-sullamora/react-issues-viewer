@@ -1,0 +1,236 @@
+$blue: #00baff;
+$black: #444;
+$grey: #516c1b;
+$border: #999;
+
+
+body {
+	background-color: #fff;
+	color: $black;
+}
+
+a {
+	color: $blue;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+
+.github-author {
+	padding: 0 0.5em;
+
+	&__avatar {
+		display: inline-block;
+		height: 28px;
+		margin-right: 0.5em;
+		vertical-align: bottom;
+		width: 28px;
+	}
+
+	&__link {
+
+	}
+}
+
+
+.paging {
+	list-style: none;
+	margin: 1em 0;
+	padding: 0;
+
+	&__item {
+		border-radius: 4px;
+		color: $blue;
+		cursor: pointer;
+		display: inline-block;
+		padding: 4px 0;
+		text-align: center;
+		width: 1.5em;
+		
+		&-selected {
+			background-color: $blue;
+			color: #fff;
+		}
+	}
+
+}
+
+
+.search-form {
+	display: block;
+
+	&__label {
+		color: $grey;
+		display: inline-block;
+		letter-spacing: -1px;
+		margin-right: 0.5em;
+		text-transform: capitalize;
+		vertical-align: middle;
+	}
+
+	&__input {
+		background-color: #fff;
+		border: 1px solid $blue;
+		display: inline-block;
+		font-size: 1em;
+		margin-right: 1em;
+		outline: none;
+		vertical-align: middle;
+		width: 8em;
+
+		&[disabled] {
+			background-color: #efefef;
+		}
+	}
+
+	&__button {
+		background-color: $blue;
+		border-radius: 4px;
+		border: 1px solid $blue;
+		color: #fff;
+		cursor: pointer;
+		outline: none;	
+		padding: 4px 1em;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	&__error {
+		color: #f28;
+		display: block;
+		font-size: 0.9em;
+
+		&:before {
+			background-color: #f28;
+			border-radius: 100%;
+			color: #fff;
+			content: "!";
+			display: inline-block;
+			font-weight: bold;
+			height: 1.2em;
+			margin-right: 0.5em;
+			text-align: center;
+			vertical-align: bottom;
+			width: 1.2em;
+		}
+	}
+}
+
+
+.repos-list {
+	list-style: none;
+    margin: 0 0 0 0.5em;
+    padding: 0;
+
+	&__item {
+		margin: 0.5em 0.5em 0 0;
+		padding: 0;
+
+		&:before {
+			color: $blue;
+			content: "•";
+			display: inline-block;
+			margin-right: 0.5em;
+		}
+	}
+
+	&__link {
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+			color: $blue;
+		}
+	}
+}
+
+
+.main-page {
+
+	&__text {
+		color: $grey;
+		letter-spacing: -1px;
+	}
+}
+
+
+.issues-list {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 1em 0;
+
+	&__row {
+		background-color: #f2f2ff;
+
+		&:nth-child(2n) {
+			background-color: #fff;
+		}
+
+	}
+
+	&__number,
+	&__title,
+	&__author,
+	&__date {
+		padding: 0.5em;
+	}
+
+	&__author {
+		white-space: nowrap;
+
+		.github-author__link {
+			color: $black;
+		}
+
+		.github-author__avatar {
+			vertical-align: middle;
+		}
+	}
+}
+
+
+.issue-view {
+
+	&__title {
+		margin-bottom: 0;
+	}
+
+	&__date {
+		display: block;
+		color: $grey;
+	}
+
+	&__author {
+		font-size: 1.1em;
+		font-weight: normal;
+		margin: 0.5em 0 2em;
+		padding-bottom: 1em;
+		border-bottom: 1px solid $border;
+	}
+
+	&__text {
+
+	}
+}
+
+
+.issue-page {
+	&__backlink {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+
+footer {
+	border-top: 1px solid $black;
+	color: $border;
+	margin-top: 2em;
+	padding-top: 1em;
+	font-size: 0.8em;
+}

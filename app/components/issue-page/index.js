@@ -20,7 +20,8 @@ class IssuePage extends React.Component {
       repo,
       id,
     } = this.props.params;
-    this.issues.find(owner, repo, id);
+    console.log(owner, repo, id);
+    this.issues.reset().find(owner, repo, id);
   }
 
   render() {
@@ -40,10 +41,10 @@ class IssuePage extends React.Component {
     }
 
     return (
-      <div>
+      <div className="issue-page">
         <IssueView issue={issue} />
         <p>
-          <a href="/#">&larr; Back to search</a>
+          <a href="/#" className="issue-page__backlink">&larr; Back to search</a>
         </p>
       </div>
     );

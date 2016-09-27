@@ -9,7 +9,7 @@ const Paging = ({ pageCount, selectedPage, onChangePage }) => {
       <li
         key={`page-${i}`}
         onClick={onChangePage.bind(this, i)}
-        className={selectedPage === i ? 'selected' : ''}
+        className={selectedPage === i ? 'paging__item paging__item-selected' : 'paging__item'}
       >
         {i}
       </li>
@@ -17,7 +17,7 @@ const Paging = ({ pageCount, selectedPage, onChangePage }) => {
   }
 
   return (
-    <ul>
+    <ul className="paging">
       {pages}
     </ul>
   );

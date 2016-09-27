@@ -33,13 +33,14 @@ class Issue {
   reset() {
     this.needToProcessPages = true;
     this.api.setPage(1);
+    IssuesActions.pageCount(0)(this.dispatch);
     return this;
   }
 
   find(username, repo='', issue='') {
-
     if (issue !== '') {
       this.saved = [username, repo, issue];
+      console.log('im here')
       return this.findSingleIssue(username, repo, issue);
     }
 

@@ -1,6 +1,6 @@
-export const LOADING_START = 'LOADING_START';
-export const LOADING_ERROR = 'LOADING_ERROR';
-export const LOADING_SUCCESS = 'LOADING_SUCCESS';
+export const LOADING_START = 'SINGLE_LOADING_START';
+export const LOADING_ERROR = 'SINGLE_LOADING_ERROR';
+export const LOADING_SUCCESS = 'SINGLE_LOADING_SUCCESS';
 
 export const actions = {
   start: () => (dispatch) => {

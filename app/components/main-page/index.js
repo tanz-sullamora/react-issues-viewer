@@ -41,7 +41,7 @@ class MainPage extends React.Component {
 
   setRepo(repoFullName) {
     const [ username, repository ] = repoFullName.split('/');
-    this.issues.find(username, repository);
+    this.issues.reset().find(username, repository);
   }
 
   render() {
@@ -58,17 +58,20 @@ class MainPage extends React.Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="main-page">
         <SearchForm
           onSearch={this.onSearch}
           isLoading={isLoading}
           error={error}
         />
         {!error && issues.length > 0 && partialSuccess && (
-          <ReposList
-            repos={issues}
-            setRepo={this.setRepo}
-          />
+          <div>
+            <p className="main-page__text">Please, pick a repository to view issues</p>
+            <ReposList
+              repos={issues}
+              setRepo={this.setRepo}
+            />
+          </div>
         )}
         {!error && issues.length > 0 && !partialSuccess && (
           <IssuesList

@@ -50,13 +50,13 @@ class SearchForm extends React.Component {
     } = this.props
 
     return (
-      <form onSubmit={this.trySearch}>
-        <label>username</label>
-        <input type="text" value={username} onChange={this.onChangeUsername} />
-        <label>repository</label>
-        <input type="text" value={repository} disabled={!username} onChange={this.onChangeRepository} />
-        <button type="submit" disabled={isLoading}>{isLoading ? 'Loading' : 'Search'}</button>
-        {error && (<p>Some error occurs. Please, try again</p>)}
+      <form onSubmit={this.trySearch} className="search-form">
+        <label className="search-form__label">username</label>
+        <input type="text" value={username} onChange={this.onChangeUsername} className="search-form__input" />
+        <label className="search-form__label">repository</label>
+        <input type="text" value={repository} disabled={!username} onChange={this.onChangeRepository} className="search-form__input" />
+        <button type="submit" disabled={isLoading} className="search-form__button">{isLoading ? 'Loading' : 'Search'}</button>
+        {error && (<p className="search-form__error">An error has occurred. Please, try again…</p>)}
       </form>
     );
   }

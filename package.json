@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/tanz-sullamora/react-issues-viewer#readme",
   "devDependencies": {
+    "autoprefixer": "^6.4.1",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
@@ -29,6 +30,9 @@
     "css-loader": "^0.25.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
+    "postcss-focus": "^1.0.0",
+    "postcss-loader": "^0.13.0",
+    "precss": "^1.4.0",
     "rimraf": "^2.5.4",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1",

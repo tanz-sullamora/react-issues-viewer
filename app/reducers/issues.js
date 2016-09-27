@@ -1,7 +1,7 @@
-export const LOADING_START = 'LOADING_START';
-export const LOADING_ERROR = 'LOADING_ERROR';
-export const LOADING_SUCCESS = 'LOADING_SUCCESS';
-export const PAGE_COUNT = 'PAGE_COUNT';
+export const LOADING_START = 'LIST_LOADING_START';
+export const LOADING_ERROR = 'LIST_LOADING_ERROR';
+export const LOADING_SUCCESS = 'LIST_LOADING_SUCCESS';
+export const PAGE_COUNT = 'LIST_PAGE_COUNT';
 
 
 export const actions = {

@@ -4,6 +4,9 @@ var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var failPlugin = require('webpack-fail-plugin');
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
+var focus = require('postcss-focus');
 
 
 var webpackConfig = {
@@ -46,7 +49,8 @@ var webpackConfig = {
     loaders: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract('css'),
+        loader: ExtractTextPlugin.extract('css!postcss'),
+        loader: ExtractTextPlugin.extract('css!postcss'),
         include: [
           path.resolve(__dirname, 'app')
         ]
@@ -79,6 +83,13 @@ var webpackConfig = {
     noParse: [
       /react-with-addons.js$/
     ]
+  },
+  postcss: function() {
+    return [
+      autoprefixer,
+      focus,
+      precss
+    ];
   },
   watchOptions: {
     aggregateTimeout: 100
