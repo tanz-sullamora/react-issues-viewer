@@ -157,9 +157,9 @@ a {
 
 
 .issues-list {
-	width: 100%;
 	border-collapse: collapse;
 	margin: 1em 0;
+	width: 100%;
 
 	&__row {
 		background-color: #f2f2ff;
@@ -188,6 +188,16 @@ a {
 			vertical-align: middle;
 		}
 	}
+
+	&__pullrequest {
+		background-color: $blue;
+		border-radius: 4px;
+		color: #fff;
+		display: inline-block;
+		font-size: 0.8em;
+		margin-right: 0.5em;
+		padding: 2px 4px;
+	}
 }
 
 
@@ -198,16 +208,16 @@ a {
 	}
 
 	&__date {
-		display: block;
 		color: $grey;
+		display: block;
 	}
 
 	&__author {
+		border-bottom: 1px solid $border;
 		font-size: 1.1em;
 		font-weight: normal;
 		margin: 0.5em 0 2em;
 		padding-bottom: 1em;
-		border-bottom: 1px solid $border;
 	}
 
 	&__text {

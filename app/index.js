@@ -17,6 +17,7 @@ render(
     <Router history={hashHistory}>
       <Route path="/" component={Layout}>
         <IndexRoute name="main" component={MainPage} />
+        <Route path="/issues/:owner/:repo/pull/:id" component={IssuePage} />
         <Route path="/issues/:owner/:repo/issues/:id" component={IssuePage} />
       </Route>
     </Router>
