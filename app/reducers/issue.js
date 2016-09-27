@@ -8,10 +8,9 @@ export const actions = {
       type: LOADING_START,
     });
   },
-  error: (response) => (dispatch) => {
+  error: () => (dispatch) => {
     dispatch({
       type: LOADING_ERROR,
-      response,
     });
   },
   success: (response) => (dispatch) => {

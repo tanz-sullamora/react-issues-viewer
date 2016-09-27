@@ -1,5 +1,5 @@
 var isDevMode = process.env.NODE_ENV != 'production';
-
+console.log(process.env.NODE_ENV)
 var webpack = require('webpack');
 var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -50,7 +50,6 @@ var webpackConfig = {
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract('css!postcss'),
-        loader: ExtractTextPlugin.extract('css!postcss'),
         include: [
           path.resolve(__dirname, 'app')
         ]
@@ -72,11 +71,19 @@ var webpackConfig = {
             'es2015'
           ],
           plugins: [
-            'transform-object-rest-spread'
+            'transform-object-rest-spread',
+            [
+              '__coverage__',
+              {
+                'only': 'app/**/*.js'
+              }
+            ]
           ]
         },
         include: [
-          path.resolve(__dirname, 'app')],
+          path.resolve(__dirname, 'app'),
+          path.resolve(__dirname, 'tests')
+        ],
         exclude: [/node_modules/]
       }
     ],
