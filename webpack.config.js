@@ -104,6 +104,7 @@ var webpackConfig = {
 };
 
 if (!isDevMode) {
+  webpackConfig.devtool = null; 
   webpackConfig.plugins = [
     new webpack.DefinePlugin({
       'process.env': {
@@ -120,7 +121,8 @@ if (!isDevMode) {
       compress: {
         warnings: false,
         unsafe: true
-      }
+      },
+      sourceMap: false
     })
   ];  
 }
